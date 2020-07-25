@@ -1,10 +1,13 @@
 package com.helloworld;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Idao.Idao;
 import com.helloPojo.UserPojo;
@@ -41,6 +44,16 @@ public class IndexController {//com.helloworld.IndexController
 		return "Profile";
 		
 	}
-	
+	@RequestMapping(value = "/searchByEmail" ,method = RequestMethod.POST)
+	public String searchUser(UserPojo user, Model m) {
+		System.out.println("enteres into Search user Method");
+		List<UserPojo> list = dao.searchUser(user);
+		System.out.println(user.getEmail());
+		m.addAttribute("user", list);
+		System.out.println("method Close search User");
+		
+		return "Profile";
+		
+	}
 
 }

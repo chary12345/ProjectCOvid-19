@@ -2,82 +2,74 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+body {
+  font-family: Arial;
+}
+
 * {
   box-sizing: border-box;
 }
 
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
 }
 
-#myUL {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
 }
 
-#myUL li a {
-  border: 1px solid #ddd;
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block
+form.example button:hover {
+  background: #0b7dda;
 }
 
-#myUL li a:hover:not(.header) {
-  background-color: #eee;
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 </style>
 </head>
 <body>
+<h3>${user}  Search Whome datails you want by Username only.....</h3>
 
-<h2>My Profiles</h2>
+<form  action="searchByEmail" style="margin:auto;max-width:200px" method="post">
+  <input type="text" placeholder="Search.." name="search2">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form><br><br>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-
-<ul id="myUL">
-  <li><a href="#">Adele</a></li>
-  <li><a href="#">Agnes</a></li>
-
-  <li><a href="#">Billy</a></li>
-  <li><a href="#">Bob</a></li>
-
-  <li><a href="#">Calvin</a></li>
-  <li><a href="#">Christina</a></li>
-  <li><a href="#">Cindy</a></li>
-</ul>
-
-<script>
-function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
-</script>
+<table style="width:50%">
+  <tr>
+    <th>Email</th>
+    <th>Date-Of-Birth</th> 
+    <th>Phone Number</th>
+  </tr>
+  <tr>
+    <td>${user.getEmail()}</td>
+    <td>${user.getDob()}</td>
+    <td>${user.getPhno()}</td>
+  </tr>
+  
+</table>
 
 </body>
-</html>
+</html> 
 
-<h3>${user} register man.....</h3>
