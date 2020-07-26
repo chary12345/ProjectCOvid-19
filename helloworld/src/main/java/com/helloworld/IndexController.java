@@ -49,10 +49,21 @@ public class IndexController {//com.helloworld.IndexController
 		System.out.println("enteres into Search user Method");
 		List<UserPojo> list = dao.searchUser(user);
 		System.out.println(user.getEmail());
-		m.addAttribute("user", list);
-		System.out.println("method Close search User");
+		System.out.println(user.getDob());
+		System.out.println(user.getPhno());
+		if(list!=null) {
+			
+			m.addAttribute("users", list);
+			System.out.println("method Close search User");
+
+			return "Profile";
+		}else {
+			m.addAttribute("noRecord", list.get(0).getEmail());
+			System.out.println("method Close search User");
+			return "Profile";
+		}
 		
-		return "Profile";
+		
 		
 	}
 
