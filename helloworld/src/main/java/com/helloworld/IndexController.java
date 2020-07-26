@@ -48,10 +48,15 @@ public class IndexController {//com.helloworld.IndexController
 	@RequestMapping(value = "/searchByEmail" ,method = RequestMethod.POST)
 	public String searchUser(@RequestParam("email") String email, Model m) {
 		System.out.println("enteres into Search user Method");
+		if(email==null) {
+			System.out.println("please enter record");
+			m.addAttribute("noRecord"," please enter any user name");
+			return "Profile";
+		}
 		List<UserPojo> list = dao.searchUser(email);
-		System.out.println(list.get(0).getEmail());
 		
-		if(list==null) {
+		
+		if(list.isEmpty()) {
 			m.addAttribute("noRecord", email+" no record Found");
 			System.out.println("1 ->method Close search User");
 			return "Profile";
