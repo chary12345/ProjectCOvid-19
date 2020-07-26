@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Idao.Idao;
+import com.helloPojo.NoRecordFoundException;
 import com.helloPojo.UserPojo;
 
 @Controller
@@ -53,21 +54,26 @@ public class IndexController {//com.helloworld.IndexController
 			m.addAttribute("noRecord"," please enter any user name");
 			return "Profile";
 		}
-		List<UserPojo> list = dao.searchUser(email);
+		List<UserPojo> list=null;
 		
-		
-		if(list.isEmpty()) {
-			m.addAttribute("noRecord", email+" no record Found");
-			System.out.println("1 ->method Close search User");
-			return "Profile";
-			
-		
-		}else {
-			m.addAttribute("users", list);
-			System.out.println("2->method Close search User");
+		try {
+			 list = dao.searchUser(email);
+			if(list.isEmpty()) {
+				//customize exception handling
+				throw new NoRecordFoundException(" no record found");
+			}else {
+				m.addAttribute("users", list);
+				System.out.println("1 ->method Close search User");
 
+				return "Profile";
+			}
+				
+		}catch (NoRecordFoundException e) {
+			m.addAttribute("noRecord", email+e);
+			System.out.println("2 ->method Close search User");
 			return "Profile";
 		}
+		
 		
 		
 		
