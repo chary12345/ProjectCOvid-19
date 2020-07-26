@@ -35,11 +35,11 @@ static {
 		session.close();
 		
 	}
-	public List<UserPojo> searchUser(UserPojo user) {
+	public List<UserPojo> searchUser(String email) {
 		Session session = sf.openSession();
 		Transaction txn = session.beginTransaction();
 		Query q = session.createQuery("from UserPojo where email=:id");
-		q.setParameter("id", user.getEmail());
+		q.setParameter("id", email);
 		List<UserPojo> list1 = q.list();
 		for (UserPojo userPojo : list1) {
 			System.out.println(userPojo.getEmail());

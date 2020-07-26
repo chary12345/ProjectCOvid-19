@@ -49,27 +49,27 @@ table, th, td {
 </style>
 </head>
 <body>
-<h3>${user}  Search Whome datails you want by Username only.....</h3>
+<h3>${user}  Search Whoome details you want by Username only.....</h3>
 
 <form  action="searchByEmail" style="margin:auto;max-width:300px" method="post">
-  <input type="text" placeholder="Search.." name="search2">
+  <input type="text" placeholder="Search.." name="email">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form><br><br>
 <h4>${noRecord}</h4>
 
-<%-- <table style="width:50%">
+<table style="width:50%">
   <tr>
     <th>Email</th>
     <th>Date-Of-Birth</th> 
     <th>Phone Number</th>
   </tr>
   <tr>
-    <td>${users.getEmail()}</td>
-    <td>${users.getDob()}</td>
-    <td>${users.getPhno()}</td>
+    <td>${users.get(0).getEmail()}</td>
+    <td>${users.get(0).getDob()}</td>
+    <td>${users.get(0).getPhno()}</td>
   </tr>
   
-</table> --%>
+</table>
 
 </body>
 </html> 

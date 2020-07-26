@@ -46,13 +46,13 @@ public class IndexController {//com.helloworld.IndexController
 	}
 	@SuppressWarnings("unused")
 	@RequestMapping(value = "/searchByEmail" ,method = RequestMethod.POST)
-	public String searchUser(UserPojo user, Model m) {
+	public String searchUser(@RequestParam("email") String email, Model m) {
 		System.out.println("enteres into Search user Method");
-		List<UserPojo> list = dao.searchUser(user);
-		System.out.println(user.getEmail());
+		List<UserPojo> list = dao.searchUser(email);
+		System.out.println(list.get(0).getEmail());
 		
 		if(list==null) {
-			m.addAttribute("noRecord", user.getEmail()+" norecord Found");
+			m.addAttribute("noRecord", email+" no record Found");
 			System.out.println("1 ->method Close search User");
 			return "Profile";
 			
