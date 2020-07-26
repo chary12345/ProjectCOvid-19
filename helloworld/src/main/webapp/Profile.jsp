@@ -55,7 +55,7 @@ table, th, td {
   <input type="text" placeholder="Search.." name="search2">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form><br><br>
-<h4>${noRecord} No Records Found</h4>
+<h4>${noRecord}</h4>
 
 <%-- <table style="width:50%">
   <tr>
