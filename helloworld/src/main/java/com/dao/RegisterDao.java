@@ -50,5 +50,18 @@ static {
 		
 		
 	}
+	public List<UserPojo> searchAllUser(UserPojo user) {
+		Session session = sf.openSession();
+		Transaction txn = session.beginTransaction();
+		Query q = session.createQuery("from UserPojo");
+	
+		List<UserPojo> list1 = q.list();
+		for (UserPojo userPojo : list1) {
+			System.out.println(userPojo.getEmail());
+		}
+		session.close();
+		return list1;
+		
+	}
 	
 }

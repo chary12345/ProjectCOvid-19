@@ -48,8 +48,42 @@ public class IndexController {//com.helloworld.IndexController
 	}
 	//search user only one user details from profile.jsp
 	@SuppressWarnings("unused")
-	@RequestMapping(value = "/searchByEmail" ,method = RequestMethod.POST)
-	public String searchUser(@RequestParam("email") String email, Model m) {
+	@RequestMapping(value = "/fetchAll" ,method = RequestMethod.POST)
+	public String searchUser(UserPojo user, Model m) {
+		System.out.println("enteres into Search user Method");
+		if(user==null) {
+			System.out.println("please enter record");
+			m.addAttribute("noRecord"," please enter any user name");
+			return "Profile";
+		}
+		List<UserPojo> list=null;
+		
+		try {
+			 list = dao.searchAllUser(user);
+			if(list.isEmpty()) {
+				//customize exception handling
+				throw new NoRecordFoundException(" no record found");
+			}else {
+				m.addAttribute("users", list);
+				System.out.println("1 ->method Close search User");
+
+				return "Profile";
+			}
+			
+			
+				
+		}catch (NoRecordFoundException e) {
+			m.addAttribute("noRecord", e);
+			System.out.println("2 ->method Close search User");
+			return "Profile";
+		}
+		
+		
+		
+		
+		
+	}@RequestMapping(value = "/searchByEmail" ,method = RequestMethod.POST)
+	public String searchALlUser(@RequestParam("email") String email, Model m) {
 		System.out.println("enteres into Search user Method");
 		if(email==null) {
 			System.out.println("please enter record");
@@ -72,40 +106,7 @@ public class IndexController {//com.helloworld.IndexController
 			
 				
 		}catch (NoRecordFoundException e) {
-			m.addAttribute("noRecord", email+e);
-			System.out.println("2 ->method Close search User");
-			return "Profile";
-		}
-		
-		
-		
-		
-		
-	}@RequestMapping(value = "/searchByEmail" ,method = RequestMethod.POST)
-	public String searchALlUser(@RequestParam("mobile") String mobile, Model m) {
-		System.out.println("enteres into Search user Method");
-		if(mobile==null) {
-			System.out.println("please enter record");
-			m.addAttribute("noRecord"," please enter any user name");
-			return "Profile";
-		}
-		List<UserPojo> list=null;
-		
-		try {
-			 list = dao.searchUser(mobile);
-			if(list.isEmpty()) {
-				//customize exception handling
-				throw new NoRecordFoundException(" no record found");
-			}else {
-				m.addAttribute("users", list);
-				System.out.println("1 ->method Close search User");
-
-				return "Profile";
-			}
-			
-				
-		}catch (NoRecordFoundException e) {
-			m.addAttribute("noRecord", mobile
+			m.addAttribute("noRecord", email
 				+e);
 			System.out.println("2 ->method Close search User");
 			return "Profile";

@@ -8,6 +8,7 @@ public interface Idao {
 	public void saveUser(UserPojo user);
 	public List<UserPojo> searchUser(String email
 			);
+	public List<UserPojo> searchAllUser(UserPojo user);
 	
 
 }
