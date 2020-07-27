@@ -81,6 +81,34 @@ public class IndexController {//com.helloworld.IndexController
 		
 		
 		
-	}
+	}@RequestMapping(value = "/searchByEmail" ,method = RequestMethod.POST)
+	public String searchALlUser(@RequestParam("mobile") String mobile, Model m) {
+		System.out.println("enteres into Search user Method");
+		if(mobile==null) {
+			System.out.println("please enter record");
+			m.addAttribute("noRecord"," please enter any user name");
+			return "Profile";
+		}
+		List<UserPojo> list=null;
+		
+		try {
+			 list = dao.searchUser(mobile);
+			if(list.isEmpty()) {
+				//customize exception handling
+				throw new NoRecordFoundException(" no record found");
+			}else {
+				m.addAttribute("users", list);
+				System.out.println("1 ->method Close search User");
 
-}
+				return "Profile";
+			}
+			
+				
+		}catch (NoRecordFoundException e) {
+			m.addAttribute("noRecord", mobile
+				+e);
+			System.out.println("2 ->method Close search User");
+			return "Profile";
+		}
+
+}}
