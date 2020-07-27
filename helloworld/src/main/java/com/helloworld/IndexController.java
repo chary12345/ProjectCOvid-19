@@ -18,13 +18,13 @@ public class IndexController {//com.helloworld.IndexController
 	@Autowired
 	Idao dao;
 	
-	
+	//welcome page 
 	@RequestMapping(value = "/wishuser", method = RequestMethod.GET)
 	public String helloWorld() {
 		System.out.println("action enters into hello world method");
 		return "hello";
 		
-	}
+	}//registering user details from hello.jsp
 	@RequestMapping(value = "/register" , method = RequestMethod.GET)
 	public String saveUser(UserPojo user,Model m) {
 		System.out.println("enters into save user method");
@@ -36,6 +36,7 @@ public class IndexController {//com.helloworld.IndexController
 		return "Profile";
 		
 	}
+	
 	@RequestMapping(value = "/login" , method = RequestMethod.POST)
 	public String logUser(UserPojo user,Model m) {
 		System.out.println("enters into logUser method");
@@ -45,6 +46,7 @@ public class IndexController {//com.helloworld.IndexController
 		return "Profile";
 		
 	}
+	//search user only one user details from profile.jsp
 	@SuppressWarnings("unused")
 	@RequestMapping(value = "/searchByEmail" ,method = RequestMethod.POST)
 	public String searchUser(@RequestParam("email") String email, Model m) {
@@ -67,6 +69,7 @@ public class IndexController {//com.helloworld.IndexController
 
 				return "Profile";
 			}
+			
 				
 		}catch (NoRecordFoundException e) {
 			m.addAttribute("noRecord", email+e);

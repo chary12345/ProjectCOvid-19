@@ -20,7 +20,7 @@ static {
 	sf = new  Configuration().configure().buildSessionFactory();
 }
 	
-	
+	//save hibernate code
 	@SuppressWarnings("deprecation")
 	public void saveUser(UserPojo user) {
 	
@@ -35,6 +35,7 @@ static {
 		session.close();
 		
 	}
+	//search only one user hibernate code
 	public List<UserPojo> searchUser(String email) {
 		Session session = sf.openSession();
 		Transaction txn = session.beginTransaction();
