@@ -168,7 +168,7 @@ function showSlides(n) {
 }
 </script>
 <h1>DO Wish</h1>
-<form action="wishuser" method="get"><input type="submit" value="WishUser"></form>
+<form action="wishuser" method="get"><input type="submit" value="ParentRegistration"></form>
 </body>
 </html> 
  
