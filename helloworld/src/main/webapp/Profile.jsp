@@ -54,17 +54,22 @@ table, th, td {
 </style>
 </head>
 <body>
-<h3>${user}  Search Whoome details you want by Username only.....</h3>
-<form action="fetchAll"  style="margin:auto;max-width:150x" method="post">
+
+<marquee><h3>Search Below with Student Email.....</h3></marquee>
+<!-- <form action="fetchAll"  style="margin:auto;max-width:150x" method="post">
 <input type="submit" value="AllData">
-</form><br>
+</form><br> -->
 <form  action="searchByEmail" style="margin:auto;max-width:300px" method="post">
   <input type="text" placeholder="Search.." name="email">
   <button type="submit"><i class="fa fa-search"></i></button>
+  <br>
+  
+	
+
 </form><br><br>
 <h4>${noRecord}</h4>
-<form action="">
-	<!-- Need to write for each in jsp to iterate userList -->
+
+<!-- Need to write for each in jsp to iterate userList -->
 	<table border="3">
 		<tr>
 		 	<th bgcolor="#FF000">Email</th>
@@ -72,7 +77,7 @@ table, th, td {
 		 	<th >Phone Number</th>
 		 	
 		</tr>
-		<core:forEach  var="userObject" items="${users}">
+		<core:forEach  var="userObject" items="${user}">
 			<tr>
 				<td>${userObject.email}</td>
 				<td>${userObject.dob}</td>
@@ -82,7 +87,7 @@ table, th, td {
 			</tr>
 		</core:forEach>
 	</table>
-	</form>
+
 	
 <%-- <table style="width:50%">
   <tr>

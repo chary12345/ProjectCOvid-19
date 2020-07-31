@@ -2,6 +2,7 @@ package com.helloworld;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +30,20 @@ public class IndexController {//com.helloworld.IndexController
 	public String saveUser(UserPojo user,Model m) {
 		System.out.println("enters into save user method");
 		System.out.println("email : "+user.getEmail());
-		dao.saveUser(user);
-		System.out.println("data saved here at controller");
-		m.addAttribute("user",user.getEmail());
+		try {
+			
+			dao.saveUser(user);
+			System.out.println("data saved here at controller");
+		}catch (ConstraintViolationException e) {
+			// TODO: handle exception
+			System.out.println("record already stored");
+			m.addAttribute("noRecord", "Student Email ALready Registerd");
+		}
+
+		List<UserPojo> users = dao.searchAllUser(user);
+	
+		
+		m.addAttribute("user",users);
 		System.out.println("exit from saveUser method");
 		return "Profile";
 		
@@ -64,7 +76,7 @@ public class IndexController {//com.helloworld.IndexController
 				//customize exception handling
 				throw new NoRecordFoundException(" no record found");
 			}else {
-				m.addAttribute("users", list);
+				m.addAttribute("user", list);
 				System.out.println("1 ->method Close search User");
 
 				return "Profile";
@@ -98,7 +110,7 @@ public class IndexController {//com.helloworld.IndexController
 				//customize exception handling
 				throw new NoRecordFoundException(" no record found");
 			}else {
-				m.addAttribute("users", list);
+				m.addAttribute("user", list);
 				System.out.println("1 ->method Close search User");
 
 				return "Profile";
