@@ -31,18 +31,19 @@ public class UserPojo {
 	}
 	
 	private String dob;
-	private String phno;
+	private String mobile;
 	public String getDob() {
 		return dob;
 	}
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
-	public String getPhno() {
-		return phno;
+	public String getMobile() {
+		return mobile;
 	}
-	public void setPhno(String phno) {
-		this.phno = phno;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
+	
 	
 }

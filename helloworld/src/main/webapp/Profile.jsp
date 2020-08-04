@@ -52,21 +52,32 @@ table, th, td {
   border-collapse: collapse;
 }
 </style>
+<script type="text/javascript">
+	
+	function alertSend(mobile) {
+		
+		alert('triggered Edit button ' + mobile);
+		document.forms[0].action = "${pageContext.request.contextPath}/alert?mobile="+ mobile;
+		document.forms[0].method = "post";
+		document.forms[0].submit(); 
+	} 
+</script>
 </head>
 <body>
 
 <marquee><h3>Search Below with Student Email.....</h3></marquee>
+${alert}
 <!-- <form action="fetchAll"  style="margin:auto;max-width:150x" method="post">
 <input type="submit" value="AllData">
 </form><br> -->
 <form  action="searchByEmail" style="margin:auto;max-width:300px" method="post">
-  <input type="text" placeholder="Search.." name="email">
+  <input type="text" placeholder="Search.." name="mobile">
   <button type="submit"><i class="fa fa-search"></i></button>
   <br>
   
 	
 
-</form><br><br>
+</form ><br><br>
 <h4>${noRecord}</h4>
 
 <!-- Need to write for each in jsp to iterate userList -->
@@ -81,8 +92,8 @@ table, th, td {
 			<tr>
 				<td>${userObject.email}</td>
 				<td>${userObject.dob}</td>
-				<td>${userObject.phno}</td>
-				
+				<td>${userObject.mobile}</td>
+				<td><input type="button" onclick="alertSend('${userObject.mobile}')" value="SendAlert"></td>
 				
 			</tr>
 		</core:forEach>

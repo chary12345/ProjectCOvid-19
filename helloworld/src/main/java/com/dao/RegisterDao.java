@@ -36,14 +36,14 @@ static {
 		
 	}
 	//search only one user hibernate code
-	public List<UserPojo> searchUser(String email) {
+	public List<UserPojo> searchUser(String mobile) {
 		Session session = sf.openSession();
 		Transaction txn = session.beginTransaction();
-		Query q = session.createQuery("from UserPojo where email=:id");
-		q.setParameter("id", email);
+		Query q = session.createQuery("from UserPojo where mobile=:id");
+		q.setParameter("id", mobile);
 		List<UserPojo> list1 = q.list();
 		for (UserPojo userPojo : list1) {
-			System.out.println(userPojo.getEmail());
+			System.out.println(userPojo.getMobile());
 		}
 		session.close();
 		return list1;
@@ -57,7 +57,7 @@ static {
 	
 		List<UserPojo> list1 = q.list();
 		for (UserPojo userPojo : list1) {
-			System.out.println(userPojo.getEmail());
+			System.out.println(userPojo.getMobile());
 		}
 		session.close();
 		return list1;

@@ -97,8 +97,8 @@ a {
 			</tr>
 			
 			<tr>
-				<td><label for="phno"><b>Phone No</b></label></td>
-				<td><input type="text" name="phno" ></td>
+				<td><label for="mobile"><b>Phone No</b></label></td>
+				<td><input type="text" name="mobile" ></td>
 			</tr>
 			<tr>
 				<td><input type="reset" value="Clear"></td>
