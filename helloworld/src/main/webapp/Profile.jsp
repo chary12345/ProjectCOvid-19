@@ -56,7 +56,7 @@ table, th, td {
 	
 	function alertSend(mobile) {
 		
-		alert('triggered Edit button ' + mobile);
+		alert('triggered send alert to ' + mobile);
 		document.forms[0].action = "${pageContext.request.contextPath}/alert?mobile="+ mobile;
 		document.forms[0].method = "post";
 		document.forms[0].submit(); 
@@ -65,7 +65,7 @@ table, th, td {
 </head>
 <body>
 
-<marquee><h3>Search Below with Student Email.....</h3></marquee>
+<marquee><h3>Search Below with Parent MonileNumber.....</h3></marquee>
 ${alert}
 <!-- <form action="fetchAll"  style="margin:auto;max-width:150x" method="post">
 <input type="submit" value="AllData">

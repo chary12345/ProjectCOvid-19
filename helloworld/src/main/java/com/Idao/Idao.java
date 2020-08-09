@@ -9,6 +9,7 @@ public interface Idao {
 	public List<UserPojo> searchUser(String email
 			);
 	public List<UserPojo> searchAllUser(UserPojo user);
+	public List<UserPojo> loguser(String email, String psw);
 	
 
 }

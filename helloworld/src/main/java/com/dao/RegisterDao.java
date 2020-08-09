@@ -3,12 +3,12 @@ package com.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Idao.Idao;
 import com.helloPojo.UserPojo;
@@ -62,6 +62,20 @@ static {
 		session.close();
 		return list1;
 		
+	}
+	public List loguser(String email, String psw) {
+		Session session = sf.openSession();
+		Transaction txn = session.beginTransaction();
+	Query query = session.createQuery("from UserPojo where email= :id and generatedPassword= :pwd");
+		
+		query.setParameter("id", email);
+		query.setParameter("pwd", psw);
+	 List list = query.list();
+	
+		txn.commit();
+		session.close();
+		
+		return list;
 	}
 	
 }

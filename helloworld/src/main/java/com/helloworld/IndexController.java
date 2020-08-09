@@ -28,6 +28,7 @@ public class IndexController {//com.helloworld.IndexController
 	}//registering user details from hello.jsp
 	@RequestMapping(value = "/register" , method = RequestMethod.GET)
 	public String saveUser(UserPojo user,Model m) {
+		System.out.println("user name :"+user.getEmail()+"-------"+"user password after encrpted"+user.getPsw());
 		System.out.println("enters into save user method");
 		System.out.println("email : "+user.getEmail());
 		try {
@@ -50,10 +51,17 @@ public class IndexController {//com.helloworld.IndexController
 	}
 	
 	@RequestMapping(value = "/login" , method = RequestMethod.POST)
-	public String logUser(UserPojo user,Model m) {
+	public String logUser(UserPojo user1,@RequestParam("email") String email,@RequestParam("generatedPassword") String generatedPassword, Model m) {
+		
+		user1.setPsw(generatedPassword);
+		 List loguser = dao.loguser(email, user1.getPsw());
+		if(loguser.isEmpty()) {
+			m.addAttribute("noRecord", "invalid credentials");
+			return "login";
+		}
 		System.out.println("enters into logUser method");
-		System.out.println("email : "+user.getEmail());
-		m.addAttribute("user",user);
+		System.out.println("email : "+email);
+		m.addAttribute("user",loguser);
 		System.out.println("exit from logUser method");
 		return "Profile";
 		
