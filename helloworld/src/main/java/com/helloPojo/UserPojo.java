@@ -24,6 +24,7 @@ public class UserPojo {
 	
 	public String getPsw() {
 		try {
+			//password encryption using hashing algorithm
 	        // Create MessageDigest instance for MD5
 	        MessageDigest md = MessageDigest.getInstance("MD5");
 	        //Add password bytes to digest
@@ -47,6 +48,7 @@ public class UserPojo {
 		return generatedPassword;
 	}
 	public void setPsw(String psw) {
+		//password encryption using hashing algorithm
 		try {
 	        // Create MessageDigest instance for MD5
 	        MessageDigest md = MessageDigest.getInstance("MD5");
