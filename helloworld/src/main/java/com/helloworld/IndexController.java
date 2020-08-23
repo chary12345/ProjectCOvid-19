@@ -63,8 +63,12 @@ public class IndexController {//com.helloworld.IndexController
 		System.out.println("email : "+email);
 		m.addAttribute("user",loguser);
 		System.out.println("exit from logUser method");
-        return "Profile";
-		
+
+        
+
+		System.out.println("master commits 2nd time");
+		return "Profile";
+
 	}
 	//search user only one user details from profile.jsp
 	@SuppressWarnings("unused")
