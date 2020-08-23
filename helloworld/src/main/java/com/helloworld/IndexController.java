@@ -63,7 +63,7 @@ public class IndexController {//com.helloworld.IndexController
 		System.out.println("email : "+email);
 		m.addAttribute("user",loguser);
 		System.out.println("exit from logUser method");
-
+   System.out.println("vinesh");
         
 
 		System.out.println("master commits 2nd time");
